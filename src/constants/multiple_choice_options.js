@@ -1,0 +1,5 @@
+const CHOICE1 = 'CHOICE1';
+const CHOICE2 = 'CHOICE2';
+const CHOICE3 = 'CHOICE3';
+const CHOICE4 = 'CHOICE4';
+export const CHOICES = [CHOICE1, CHOICE2, CHOICE3, CHOICE4];
