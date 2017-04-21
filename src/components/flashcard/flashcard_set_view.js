@@ -12,49 +12,49 @@ import { Divider } from 'semantic-ui-react';
 
 class FlashcardSetView extends Component {
 
-  componentWillMount() {
-    const flashcardsetId = this.props.params.flashcardsetId;
-    this.props.fetchFlashcardSetById(flashcardsetId);
-  }
-
-  constructor(props) {
-    super(props);
-  }
-
-  render() {
-    const flashcardSet = this.props.flashcardSet;
-    if (!flashcardSet) {
-      return (<div>Loading Set...</div>);
+    componentWillMount() {
+        const flashcardsetId = this.props.params.flashcardsetId;
+        this.props.fetchFlashcardSetById(flashcardsetId);
     }
-    const currentUserId = localStorage.getItem('userId');
-    const flashcardSetId = this.props.params.flashcardsetId;
-    const flashcardSetOwner = this.props.flashcardSet._creator;
-    const editable = currentUserId === flashcardSetOwner._id;
-    const ownerId = flashcardSetOwner._id;
-    const name = flashcardSetOwner.name;
 
-    const {title, description, flashcards} = this.props.flashcardSet;
-    return (
-      <div>
-		<FlashcardSetTitleCard flashcardSetId={flashcardSetId} editable={editable} name={name} ownerId={ownerId}/>
-		<Divider hidden/>
-		<FlashcardSetHeader title={title} description={description}/>
-		<Divider hidden/>
-		<FlashcardList flashcards={flashcards}/>
-	</div>
-    );
-  }
+    constructor(props) {
+        super(props);
+    }
+
+    render() {
+        const flashcardSet = this.props.flashcardSet;
+        if (!flashcardSet) {
+            return (<div>Loading Set...</div>);
+        }
+        const currentUserId = localStorage.getItem('userId');
+        const flashcardSetId = this.props.params.flashcardsetId;
+        const flashcardSetOwner = this.props.flashcardSet._creator;
+        const editable = currentUserId === flashcardSetOwner._id;
+        const ownerId = flashcardSetOwner._id;
+        const name = flashcardSetOwner.name;
+
+        const {title, description, flashcards} = this.props.flashcardSet;
+        return (
+            <div>
+    <FlashcardSetTitleCard title={title} flashcardSetId={flashcardSetId} editable={editable} name={name} ownerId={ownerId}/>
+    <Divider hidden/>
+    <FlashcardSetHeader title={title} description={description}/>
+    <Divider hidden/>
+    <FlashcardList flashcards={flashcards}/>
+  </div>
+        );
+    }
 }
 
 
 
 function mapStateToProps(state) {
-  const flashcardSet = state.flashcard.flashcardSet;
-  return {
-    flashcardSet
-  };
+    const flashcardSet = state.flashcard.flashcardSet;
+    return {
+        flashcardSet
+    };
 }
 
 export default connect(mapStateToProps, {
-  fetchFlashcardSetById
+    fetchFlashcardSetById
 })(FlashcardSetView);

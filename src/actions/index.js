@@ -29,7 +29,8 @@ export function createFlashcardSet(flashcardSetProps) {
         )
             .then(response => {
                 const flashcardSetTitle = response.data.title;
-                browserHistory.push(`user/${userId}/flashcardsets`);
+                const flashcardSetId = response.data._id;
+                browserHistory.push(`flashcardsets/${flashcardSetId}`);
                 dispatch({
                     type: ADD_FLASH_MESSAGE,
                     payload: {

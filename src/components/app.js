@@ -5,16 +5,15 @@ import { Container, Divider } from 'semantic-ui-react';
 
 export default class App extends Component {
     render() {
-
         return (
             <div>
-        <Header />
-         <FlashMessagesList />
-        <Divider hidden/>
-        <Container className="website-body">
+            <Header />
+            <Container className="website-body">
+            <FlashMessagesList />
+            <Divider hidden/>
             {this.props.children}
-           </Container>
-      </div>
+            </Container>
+        </div>
         );
     }
 }

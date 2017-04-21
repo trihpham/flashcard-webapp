@@ -12,46 +12,46 @@ import { Divider } from 'semantic-ui-react';
 
 class ViewAndUpdateSet extends Component {
 
-  componentWillMount() {
-    const flashcardsetId = this.props.params.flashcardsetId;
-    this.props.fetchFlashcardSetById(flashcardsetId);
-  }
-
-  constructor(props) {
-    super(props);
-  }
-
-  render() {
-    const flashcardSet = this.props.flashcardSet;
-    if (!flashcardSet) {
-      return (<div>Loading Set...</div>);
+    componentWillMount() {
+        const flashcardsetId = this.props.params.flashcardsetId;
+        this.props.fetchFlashcardSetById(flashcardsetId);
     }
-    const currentUserId = localStorage.getItem('userId');
-    const flashcardSetId = this.props.params.flashcardsetId;
-    const flashcardSetOwner = this.props.flashcardSet._creator;
-    const ownerId = flashcardSetOwner._id;
-    const editable = currentUserId === flashcardSetOwner._id;
-    const {title, description, flashcards} = this.props.flashcardSet;
-    return (
-      <div>
-		<EditableFlashcardSetTitleCard flashcardSetId={flashcardSetId}/>
-		<EditableFlashcardSetHeader title={title} flashcardSetId={flashcardSetId} description={description} editable={editable} />
-		<Divider section/>
-		<EditableFlashcardList flashcards={flashcards} flashcardSetId={flashcardSetId} editable={editable} />
-		<NewFlashcardFields flashcardSetId={flashcardSetId} editable={editable} flashcards={flashcards}/>
-	  </div>
-    );
-  }
+
+    constructor(props) {
+        super(props);
+    }
+
+    render() {
+        const flashcardSet = this.props.flashcardSet;
+        if (!flashcardSet) {
+            return (<div>Loading Set...</div>);
+        }
+        const currentUserId = localStorage.getItem('userId');
+        const flashcardSetId = this.props.params.flashcardsetId;
+        const flashcardSetOwner = this.props.flashcardSet._creator;
+        const ownerId = flashcardSetOwner._id;
+        const editable = currentUserId === flashcardSetOwner._id;
+        const {title, description, flashcards} = this.props.flashcardSet;
+        return (
+            <div>
+    <EditableFlashcardSetTitleCard title={title} flashcardSetId={flashcardSetId}/>
+    <EditableFlashcardSetHeader title={title} flashcardSetId={flashcardSetId} description={description} editable={editable} />
+    <Divider section/>
+    <EditableFlashcardList flashcards={flashcards} flashcardSetId={flashcardSetId} editable={editable} />
+    <NewFlashcardFields flashcardSetId={flashcardSetId} editable={editable} flashcards={flashcards}/>
+    </div>
+        );
+    }
 }
 
 
 function mapStateToProps(state) {
-  const flashcardSet = state.flashcard.flashcardSet;
-  return {
-    flashcardSet
-  };
+    const flashcardSet = state.flashcard.flashcardSet;
+    return {
+        flashcardSet
+    };
 }
 
 export default connect(mapStateToProps, {
-  fetchFlashcardSetById
+    fetchFlashcardSetById
 })(ViewAndUpdateSet);

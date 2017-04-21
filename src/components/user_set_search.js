@@ -39,6 +39,16 @@ class UserSetSearch extends Component {
         <FlashcardSetList flashcardSetList={flashcardSetList} isUserSet={true}/>
     </div>);
     }
+
+    componentWillReceiveProps(nextProps, nextState) {
+        if (nextProps.params.userId !== this.props.params.userId) {
+            const userId = nextProps.params.userId || localStorage.getItem('userId');
+            nextProps.fetchFlashcardSetsByUser({
+                userId
+            });
+        }
+
+    }
 }
 
 
