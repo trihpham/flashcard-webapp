@@ -31,11 +31,11 @@ class ViewAndUpdateSet extends Component {
         const flashcardSetOwner = this.props.flashcardSet._creator;
         const ownerId = flashcardSetOwner._id;
         const editable = currentUserId === flashcardSetOwner._id;
-        const {title, description, flashcards} = this.props.flashcardSet;
+        const {title, description, flashcards, tags} = this.props.flashcardSet;
         return (
             <div>
     <EditableFlashcardSetTitleCard title={title} flashcardSetId={flashcardSetId}/>
-    <EditableFlashcardSetHeader title={title} flashcardSetId={flashcardSetId} description={description} editable={editable} />
+    <EditableFlashcardSetHeader title={title} flashcardSetId={flashcardSetId} description={description} editable={editable} tags={tags} />
     <Divider section/>
     <EditableFlashcardList flashcards={flashcards} flashcardSetId={flashcardSetId} editable={editable} />
     <NewFlashcardFields flashcardSetId={flashcardSetId} editable={editable} flashcards={flashcards}/>

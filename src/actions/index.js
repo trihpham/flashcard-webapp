@@ -11,7 +11,7 @@ export const ROOT_URL = process.env.NODE_ENV === 'production' ? (PRODUCTION_ROOT
 
 export function createFlashcardSet(flashcardSetProps) {
     axios.defaults.headers.common['authorization'] = localStorage.getItem('token');
-    const {title, description, flashcards} = flashcardSetProps;
+    const {title, description, flashcards, tags} = flashcardSetProps;
     const userId = localStorage.getItem('userId');
     return function(dispatch) {
         axios({
@@ -23,7 +23,8 @@ export function createFlashcardSet(flashcardSetProps) {
             data: {
                 title,
                 description,
-                flashcards
+                flashcards,
+                tags
             }
         }
         )
@@ -202,13 +203,14 @@ export function fetchFlashcardSetById(flashcardSetId) {
 }
 
 export function updateFlashcardSet(flashcardSetId, flashcardSetProps) {
-    const {title, description} = flashcardSetProps;
+    const {title, description, tags} = flashcardSetProps;
     axios.defaults.headers.common['authorization'] = localStorage.getItem('token');
     return function(dispatch) {
         axios.post(`${ROOT_URL}/flashcardset/update`, {
             flashcardSetId,
             title,
-            description
+            description,
+            tags
         }).then(response => {
             if (response.data) {
                 dispatch({

@@ -33,12 +33,13 @@ class FlashcardSetView extends Component {
         const ownerId = flashcardSetOwner._id;
         const name = flashcardSetOwner.name;
 
-        const {title, description, flashcards} = this.props.flashcardSet;
+        const {title, description, flashcards, tags} = this.props.flashcardSet;
+        console.log(this.props.flashcardSet);
         return (
             <div>
     <FlashcardSetTitleCard title={title} flashcardSetId={flashcardSetId} editable={editable} name={name} ownerId={ownerId}/>
     <Divider hidden/>
-    <FlashcardSetHeader title={title} description={description}/>
+    <FlashcardSetHeader title={title} description={description} tags={tags}/>
     <Divider hidden/>
     <FlashcardList flashcards={flashcards}/>
   </div>

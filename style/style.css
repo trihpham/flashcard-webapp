@@ -292,6 +292,11 @@ transition: opacity .3s linear, transform .3s linear;
     user-select: none;
 }
 
+.tag-field {
+  padding-top: 5px;
+  padding-bottom: 5px;
+}
+
 /*.quiz-result-progress-bar {
     margin-bottom: 0px;
 }*/
